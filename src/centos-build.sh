@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 #
 # Copyright The Titan Project Contributors.
 #

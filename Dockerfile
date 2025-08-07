@@ -13,7 +13,7 @@ RUN apt-get update
 # Tools to fetch and build source
 RUN apt-get install -y                                                       \
     git	                                                                     \
-    curl xz-utils                                                            \
+    curl xz-utils jq                                                         \
     build-essential bc                                                       \
     autoconf automake libtool kmod                                           \
     zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev \
@@ -29,9 +29,10 @@ RUN apt-get install -y musl
 # Tar can fail sometimes on overlayfs, use bsdtar as a workaround
 RUN apt-get install -y bsdtar
 
-# Add required tools for those distros that require building the kernel from source
+# Add required tools for kernel building and WSL2 custom kernel compilation
 RUN apt-get install -y build-essential libncurses-dev bison flex libssl-dev   \
-    libelf-dev
+    libelf-dev dwarves python3-cffi python3-dev python3-setuptools           \
+    libtirpc-dev libffi-dev
 
 # Some distros require the ability to copy data from docker images
 RUN apt-get -y install apt-transport-https \
@@ -49,6 +50,7 @@ RUN apt-get -y install docker-ce
 
 RUN mkdir /src
 RUN mkdir /build
+RUN mkdir /out
 
 COPY src/* /
 
