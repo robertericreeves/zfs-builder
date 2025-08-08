@@ -2,6 +2,8 @@
 # Copyright The Titan Project Contributors.
 #
 
+# Used to create titandata/zfs-builder:latest. Until we update Docker Hub, use this locally to build titandata/zfs-builder:latest container.
+
 FROM ubuntu:bionic
 
 ARG KERNEL_RELEASE=
